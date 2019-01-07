@@ -597,12 +597,12 @@ sign transactions using testnet-managed keys.</li>
   <span class="p">},</span>
   <span class="na">web3</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">statusTimerDelay</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="na">confirmedBlockCount</span><span class="p">:</span> <span class="mi">8</span>
     <span class="na">transactionSettings</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">gasPrice</span><span class="p">:</span> <span class="mi">12000000000</span>
     <span class="p">}</span>
   <span class="p">},</span>
-  <span class="na">log</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="na">confirmedBlockCount</span><span class="p">:</span> <span class="mi">8</span>
+  <span class="na">log</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">});</span>
 </code></pre>
 <ul>
@@ -640,15 +640,15 @@ sign transactions using testnet-managed keys.</li>
 <li>Object containing transaction options to be applied to all transactions sent through the library.</li>
 <li>Default value: <code>{ gasLimit: 4000000 }</code></li>
 </ul></li>
+<li><code>web3.confirmedBlockCount</code>
+
+<ul>
+<li>Number of blocks to wait after a transaction has been mined when calling <code>confirm</code>. See <a href="#transactions">transactions</a> for further explanation. Defaults to 5.</li>
+</ul></li>
 <li><code>log</code>
 
 <ul>
 <li>Set this to <code>false</code> to reduce the verbosity of logging.</li>
-</ul></li>
-<li><code>confirmedBlockCount</code>
-
-<ul>
-<li>Number of blocks to wait after a transaction has been mined when calling <code>confirm</code>. See <a href="#transactions">transactions</a> for further explanation. Default is 5.</li>
 </ul></li>
 </ul>
 <h2 id='authenticate'><strong>authenticate</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="nx">await</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">();</span>
