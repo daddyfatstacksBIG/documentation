@@ -758,7 +758,7 @@ the price of ETH in USD.</p>
 <li><strong>Returns:</strong> promise (resolves to the amount of outstanding debt)</li>
 </ul>
 
-<p><code>cdp.getDebtValue()</code> returns the amount of that has been borrowed against the collateral in the CDP. By default it returns the amount of Dai as a <a href="#units">currency unit</a>, but can return the equivalent in USD if the first argument is <code>Maker.USD</code>.</p>
+<p><code>cdp.getDebtValue()</code> returns the amount of debt that has been borrowed against the collateral in the CDP. By default it returns the amount of Dai as a <a href="#units">currency unit</a>, but can return the equivalent in USD if the first argument is <code>Maker.USD</code>.</p>
 <h2 id='getgovernancefee'><strong>getGovernanceFee</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">mkrFee</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">cdp</span><span class="p">.</span><span class="nx">getGovernanceFee</span><span class="p">();</span>
 <span class="kr">const</span> <span class="nx">usdFee</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">cdp</span><span class="p">.</span><span class="nx">getGovernanceFee</span><span class="p">(</span><span class="nx">Maker</span><span class="p">.</span><span class="nx">USD</span><span class="p">);</span>
 </code></pre>
