@@ -825,6 +825,8 @@ the price of ETH in USD.</p>
 </ul>
 
 <p><code>cdp.lockEth(eth)</code> abstracts the token conversions needed to lock collateral in a CDP. It first converts the ETH to WETH, then converts the WETH to PETH, then locks the PETH in the CDP.</p>
+
+<p><em>Note: this process is not atomic, so it&#39;s possible for some of the transactions to succeed but not all three.  See <a href="#proxy-service">Using DsProxy</a> for executing multiple transactions atomically.</em></p>
 <h2 id='drawdai'><strong>drawDai</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">cdp</span><span class="p">.</span><span class="nx">drawDai</span><span class="p">(</span><span class="mi">10000000000000000000</span><span class="p">,</span> <span class="nx">DAI</span><span class="p">.</span><span class="nx">wei</span><span class="p">);</span>
 <span class="c1">// or equivalently</span>
 <span class="k">return</span> <span class="nx">await</span> <span class="nx">cdp</span><span class="p">.</span><span class="nx">drawDai</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="nx">DAI</span><span class="p">);</span>
@@ -921,7 +923,7 @@ reported by the oracles in the Maker system.</p>
 <li><strong>Returns:</strong> promise (resolves to liquidation ratio)</li>
 </ul>
 
-<p><code>getLiquidationPenalty()</code> returns a decimal representation of the liquidation penalty, e.g. 1.5</p>
+<p><code>getLiquidationRatio()</code> returns a decimal representation of the liquidation ratio, e.g. 1.5</p>
 <h2 id='getliquidationpenalty'><strong>getLiquidationPenalty</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">penalty</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ethCdp</span><span class="p">.</span><span class="nx">getLiquidationPenalty</span><span class="p">();</span>
 </code></pre>
 <ul>
@@ -937,7 +939,9 @@ reported by the oracles in the Maker system.</p>
 <li><strong>Returns:</strong> promise (resolves to yearly governance fee)</li>
 </ul>
 
-<p><code>getAnnualGovernanceFee()</code> returns a decimal representation of the liquidation penalty, e.g. 0.005</p>
+<p><code>getAnnualGovernanceFee()</code> returns a decimal representation of the annual governance fee, e.g. 0.005.  </p>
+
+<p><em>Note: this is often referred to as the <code>Stability Fee</code>, even though technically the <code>Stability Fee</code> is the fee that is paid in Dai, and the <code>Governance Fee</code> is the fee that is paid in MKR.  But since fees are only paid in MKR in Single-Collateral Dai, and only paid in Dai in Multi-Collateral Dai, the fee in Single-Collateral Dai is often referred to as the <code>Stability Fee</code> to be consistent with the term that will be used in Multi-Collateral Dai and to avoid unduly confusing regular users.</em></p>
 <h1 id='exchange-service'>Exchange Service</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">exchange</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'exchange'</span><span class="p">);</span>
 </code></pre>
 <p>Retrieve the OasisExchangeService (or alternative implementation) 
