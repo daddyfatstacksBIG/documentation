@@ -773,6 +773,8 @@ the price of ETH in USD.</p>
 </ul>
 
 <p><code>cdp.getGovernanceFee()</code> returns the value of the accrued governance fee. By default it returns the amount of MKR as a <a href="#units">currency unit</a>, but can return the equivalent in USD if the first argument is <code>Maker.USD</code>.</p>
+
+<p><em>Note: this is often referred to as the <code>Stability Fee</code>, even though technically the <code>Stability Fee</code> is the fee that is paid in Dai, and the <code>Governance Fee</code> is the fee that is paid in MKR.  But since fees are only paid in MKR in Single-Collateral Dai, and only paid in Dai in Multi-Collateral Dai, the fee in Single-Collateral Dai is often referred to as the <code>Stability Fee</code> to be consistent with the term that will be used in Multi-Collateral Dai and to avoid unduly confusing regular users.</em></p>
 <h2 id='getcollateralizationratio'><strong>getCollateralizationRatio</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">ratio</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">cdp</span><span class="p">.</span><span class="nx">getCollateralizationRatio</span><span class="p">();</span>
 </code></pre>
 <ul>
