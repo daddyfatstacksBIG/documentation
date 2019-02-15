@@ -550,13 +550,6 @@ about the newly opened position to the console.</p>
   <span class="na">url</span><span class="p">:</span> <span class="s1">'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'</span>
 <span class="p">});</span>
 
-<span class="kr">const</span> <span class="nx">makerKovan</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'kovan'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span>
-  <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">infuraApiKey</span><span class="p">:</span> <span class="nx">YOUR_INFURA_API_KEY</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-
 <span class="kr">const</span> <span class="nx">makerTest</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'test'</span><span class="p">);</span>
 </code></pre>
 <p>When instantiating a <code>Maker</code> object, you pass in the name of a configuration preset
@@ -576,28 +569,18 @@ right.</p>
 <ul>
 <li>Use Web3.providers.HttpProvider.</li>
 </ul></li>
-<li><code>&#39;kovan&#39;</code>
-
-<ul>
-<li>Use the Kovan testnet via Infura.  Note that the way this preset works will be changed after March 27th 2019, to account for <a href="https://blog.infura.io/infura-dashboard-transition-update-c670945a922a">Infura&#39;s new endpoints</a>.  For now, we recommend using the <code>http</code> preset with your infura endpoint instead.</li>
-</ul></li>
 <li><code>&#39;test&#39;</code>
 
 <ul>
 <li>Use a local testnet (e.g. Ganache) running at <code>http://127.0.0.1:2000</code>, and
 sign transactions using testnet-managed keys.</li>
 </ul></li>
-<li><code>&#39;mainnet&#39;</code>
-
-<ul>
-<li>Use the main Ethereum network via Infura.  Note that the way this preset works will be changed after March 27th 2019, to account for <a href="https://blog.infura.io/infura-dashboard-transition-update-c670945a922a">Infura&#39;s new endpoints</a>.  For now, we recommend using the <code>http</code> preset with your infura endpoint instead.</li>
-</ul></li>
 </ul>
 <h2 id='options'>Options</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span> <span class="c1">// '0xabc...'</span>
   <span class="na">url</span><span class="p">:</span> <span class="s1">'http://some-ethereum-rpc-node.net'</span><span class="p">,</span>
   <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">type</span><span class="p">:</span> <span class="s1">'HTTP'</span><span class="p">,</span> <span class="c1">// 'INFURA', 'TEST'</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'HTTP'</span><span class="p">,</span> <span class="c1">// or 'TEST'</span>
     <span class="na">network</span><span class="p">:</span> <span class="s1">'kovan'</span>
   <span class="p">},</span>
   <span class="na">web3</span><span class="p">:</span> <span class="p">{</span>
@@ -621,15 +604,9 @@ sign transactions using testnet-managed keys.</li>
 <ul>
 <li>The URL of the node to connect to. Only used when <code>provider.type</code> is <code>&quot;HTTP&quot;</code>.</li>
 </ul></li>
-<li><code>provider.infuraApiKey</code>
-
-<ul>
-<li>Your Infura unique access token (the part after infura.io/ when accessing Infura via https). Only used when <code>provider.type</code> is <code>&quot;INFURA&quot;</code>.  Note that this will be deprecated after March 27th 2019 to account for <a href="https://blog.infura.io/infura-dashboard-transition-update-c670945a922a">Infura&#39;s new endpoints</a>.  For now, we recommend using the <code>http</code> preset with your infura endpoint instead.</li>
-</ul></li>
 <li><code>provider.type</code>
 
 <ul>
-<li><code>&quot;INFURA&quot;</code>: connect to an Ethereum node via infura</li>
 <li><code>&quot;TEST&quot;</code>: connect to a local test blockchain at &#39;http://127.1:2000&#39;</li>
 <li><code>&quot;HTTP&quot;</code>: connect to an Ethereum node via any arbitrary url</li>
 </ul></li>
