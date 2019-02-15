@@ -509,12 +509,12 @@
 <h3 id='umd'>UMD</h3><pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"./dai.js"</span> <span class="nt">/&gt;</span>
 
 <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="kd">var</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,{</span>
-    <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span> 
+<span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,{</span>
+    <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span>
     <span class="na">url</span><span class="p">:</span> <span class="s1">'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'</span>
-<span class="p">});</span>
-
-<span class="nx">maker</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">()</span>
+<span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">maker</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nb">window</span><span class="p">.</span><span class="nx">maker</span> <span class="o">=</span> <span class="nx">maker</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">())</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">openCdp</span><span class="p">())</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">cdp</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cdp</span><span class="p">.</span><span class="nx">id</span><span class="p">));</span>
 <span class="nt">&lt;/script&gt;</span>
@@ -522,12 +522,12 @@
 <p>This library is also accessible as a <a href="https://github.com/umdjs/umd">UMD module</a>.</p>
 <h2 id='quick-example'>Quick Example</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">Maker</span> <span class="nx">from</span> <span class="s1">'@makerdao/dai'</span><span class="p">;</span>
 
-<span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">"http"</span><span class="p">,{</span>
-    <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span> 
-    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'</span>
-<span class="p">});</span>
-
 <span class="nx">async</span> <span class="kd">function</span> <span class="nx">openLockDraw</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">"http"</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span>
+        <span class="na">url</span><span class="p">:</span> <span class="s1">'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'</span>
+    <span class="p">});</span>
+
   <span class="nx">await</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">();</span>
   <span class="kr">const</span> <span class="nx">cdp</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">openCdp</span><span class="p">();</span>
 
@@ -543,21 +543,21 @@
 <p>Using the <a href="#maker">Maker</a> and <a href="#cdp">Cdp</a> APIs, the code shown on the right
 opens a cdp, locks 0.25 ETH into it, draws out 50 Dai, and then logs information
 about the newly opened position to the console.</p>
-<h1 id='maker'>Maker</h1><h2 id='presets'>Presets</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">makerBrowser</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'browser'</span><span class="p">);</span>
+<h1 id='maker'>Maker</h1><h2 id='presets'>Presets</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">makerBrowser</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'browser'</span><span class="p">);</span>
 
-<span class="kr">const</span> <span class="nx">makerHttp</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="nx">makerHttp</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span>
   <span class="na">url</span><span class="p">:</span> <span class="s1">'https://kovan.infura.io/v3/YOUR_INFURA_PROJECT_ID'</span>
 <span class="p">});</span>
 
-<span class="kr">const</span> <span class="nx">makerKovan</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'kovan'</span><span class="p">,</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="nx">makerKovan</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'kovan'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span>
   <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">infuraApiKey</span><span class="p">:</span> <span class="nx">YOUR_INFURA_API_KEY</span>
   <span class="p">}</span>
 <span class="p">});</span>
 
-<span class="kr">const</span> <span class="nx">makerTest</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'test'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">makerTest</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'test'</span><span class="p">);</span>
 </code></pre>
 <p>When instantiating a <code>Maker</code> object, you pass in the name of a configuration preset
 and an options hash.</p>
@@ -593,7 +593,7 @@ sign transactions using testnet-managed keys.</li>
 <li>Use the main Ethereum network via Infura.  Note that the way this preset works will be changed after March 27th 2019, to account for <a href="https://blog.infura.io/infura-dashboard-transition-update-c670945a922a">Infura&#39;s new endpoints</a>.  For now, we recommend using the <code>http</code> preset with your infura endpoint instead.</li>
 </ul></li>
 </ul>
-<h2 id='options'>Options</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span>
+<h2 id='options'>Options</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">privateKey</span><span class="p">:</span> <span class="nx">YOUR_PRIVATE_KEY</span><span class="p">,</span> <span class="c1">// '0xabc...'</span>
   <span class="na">url</span><span class="p">:</span> <span class="s1">'http://some-ethereum-rpc-node.net'</span><span class="p">,</span>
   <span class="na">provider</span><span class="p">:</span> <span class="p">{</span>
@@ -1159,7 +1159,7 @@ OasisExchangeService implementation uses the OasisDEX OTC market for this.</p>
 <li><code>timeStamp()</code> : timestamp of when transaction was mined</li>
 <li><code>timeStampSubmitted()</code> : timestamp of when transaction was submitted to the network</li>
 </ul>
-<h1 id='using-multiple-accounts'>Using Multiple Accounts</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+<h1 id='using-multiple-accounts'>Using Multiple Accounts</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
   <span class="na">url</span><span class="p">:</span> <span class="s1">'http://localhost:2000'</span><span class="p">,</span>
   <span class="na">accounts</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">other</span><span class="p">:</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="nx">privateKey</span><span class="p">,</span> <span class="na">key</span><span class="p">:</span> <span class="nx">someOtherKey</span><span class="p">},</span>
@@ -1187,7 +1187,7 @@ OasisExchangeService implementation uses the OasisDEX OTC market for this.</p>
 <p>Call <code>useAccount</code> to switch to using an account by its name, or <code>useAccountWithAddress</code> to switch to using an account by its address, and subsequent calls will use that account as the transaction signer.</p>
 
 <p>When the Maker instance is first created, it will use the account named <code>default</code> if it exists, or the first account in the list otherwise.</p>
-<h2 id='account-types'>Account types</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+<h2 id='account-types'>Account types</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
   <span class="na">url</span><span class="p">:</span> <span class="s1">'http://localhost:2000'</span><span class="p">,</span>
   <span class="na">accounts</span><span class="p">:</span> <span class="p">{</span>
     <span class="c1">// this will be the first account from the provider at</span>
@@ -1213,7 +1213,7 @@ OasisExchangeService implementation uses the OasisDEX OTC market for this.</p>
 <h2 id='plugins'>Plugins</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">TrezorPlugin</span> <span class="nx">from</span> <span class="s1">'@makerdao/dai-plugin-trezor-web'</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">LedgerPlugin</span> <span class="nx">from</span> <span class="s1">'@makerdao/dai-plugin-ledger-web'</span><span class="p">;</span>
 
-<span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+<span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
   <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
     <span class="nx">TrezorPlugin</span><span class="p">,</span>
     <span class="nx">LedgerPlugin</span><span class="p">,</span>
@@ -1415,14 +1415,14 @@ suite, use <code>npm run test:net</code>.</p>
 
 <span class="c1">//step 8: a new service role ('example') is used</span>
 <span class="nx">test</span><span class="p">(</span><span class="s1">'test 1'</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span><span class="na">example</span><span class="p">:</span> <span class="s2">"ExampleService"</span><span class="p">});</span>
+  <span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span><span class="na">example</span><span class="p">:</span> <span class="s2">"ExampleService"</span><span class="p">});</span>
   <span class="kr">const</span> <span class="nx">exampleService</span> <span class="o">=</span> <span class="nx">customMaker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'example'</span><span class="p">);</span>
   <span class="nx">exampleService</span><span class="p">.</span><span class="nx">test</span><span class="p">();</span> <span class="c1">//logs "test"</span>
 <span class="p">});</span>
 
 <span class="c1">//step 8: a custom service replaces a default service (Web3)</span>
 <span class="nx">test</span><span class="p">(</span><span class="s1">'test 2'</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span><span class="na">web3</span><span class="p">:</span> <span class="s2">"MyCustomWeb3Service"</span><span class="p">});</span>
+  <span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span><span class="na">web3</span><span class="p">:</span> <span class="s2">"MyCustomWeb3Service"</span><span class="p">});</span>
   <span class="kr">const</span> <span class="nx">mycustomWeb3Service</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'web3'</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
@@ -1432,12 +1432,14 @@ suite, use <code>npm run test:net</code>.</p>
 <li><p>(9) (Optional) Implement the relevant service lifecycle functions (<code>initialize()</code>, <code>connect()</code>, and <code>authenticate()</code>).  See the <code>Service Lifecycle</code> section below for more info</p></li>
 </ul>
 <pre class="highlight javascript tab-javascript"><code><span class="c1">//step 10: in ExampleService.spec.js</span>
-<span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span><span class="na">example</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ExampleService"</span><span class="p">,</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">example</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ExampleService"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">exampleSetting</span><span class="p">:</span> <span class="s2">"this is a configuration setting"</span>
-  <span class="p">}]});</span>
+  <span class="p">}]</span>
+<span class="p">});</span>
 
 <span class="c1">//step 10: accessing configuration settings in ExampleService.js</span>
-<span class="nx">initialize</span><span class="p">(</span><span class="nx">settings</span><span class="p">){</span>
+<span class="nx">initialize</span><span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">settings</span><span class="p">.</span><span class="nx">exampleSetting</span><span class="p">){</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'log'</span><span class="p">).</span><span class="nx">info</span><span class="p">(</span><span class="nx">settings</span><span class="p">.</span><span class="nx">exampleSetting</span><span class="p">);</span>
   <span class="p">}</span>
@@ -1457,7 +1459,7 @@ suite, use <code>npm run test:net</code>.</p>
 <p>To specify what initializing, connecting and authenticating entails, implement the <code>initialize()</code>, <code>connect()</code>, and <code>authenticate()</code> functions in the service itself.  This will be called while the service&#39;s manager brings the service to the corresponding state.</p>
 
 <p><img src="images/statemachine.png" alt="alt text" /></p>
-<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span><span class="na">example</span><span class="p">:</span> <span class="s2">"ExampleService"</span><span class="p">});</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">maker</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Maker</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'http'</span><span class="p">,</span> <span class="p">{</span><span class="na">example</span><span class="p">:</span> <span class="s2">"ExampleService"</span><span class="p">});</span>
 <span class="kr">const</span> <span class="nx">exampleService</span> <span class="o">=</span> <span class="nx">customMaker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'example'</span><span class="p">);</span>
 
 <span class="c1">//wait for example service and its dependencies to initialize</span>
