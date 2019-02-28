@@ -1244,13 +1244,13 @@ OasisExchangeService implementation uses the OasisDEX OTC market for this.</p>
 <p>This makes it possible for users&#39; token allowances to persist from one Maker application to another, and it allows users to <a href="https://proxy-recover-funds.surge.sh/">recover any funds</a> mistakenly sent to the proxy&#39;s address.</p>
 
 <p>Many of the functions in <code>DSProxyService</code> will only be relevant to <code>power users</code>. All that is strictly required to automatically generate a function&#39;s calldata and find the correct profile proxy is the inclusion of <code>{ dsProxy: true }</code> in the options object for any transaction — provided the user has already deployed a profile proxy. If that&#39;s not certain, it may also be necessary to query the registry to determine if a user already owns a proxy, and to <code>build</code> one if they do not.</p>
-<h2 id='currentproxy'>currentProxy</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">getProxy</span><span class="p">()</span> <span class="p">{</span>
+<h2 id='currentproxy'>currentProxy</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">asnyc</span> <span class="kd">function</span> <span class="nx">getProxy</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'proxy'</span><span class="p">).</span><span class="nx">currentProxy</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre>
 <ul>
 <li><strong>Params:</strong> None</li>
-<li><strong>Returns:</strong> Address <strong>or</strong> <code>null</code></li>
+<li><strong>Returns:</strong> promise (resolves to address <strong>or</strong> <code>null</code>)</li>
 </ul>
 
 <p>If the <code>currentAccount</code> (according the <code>Web3Service</code>) has already deployed a DSProxy, <code>currentProxy()</code> returns its address. If not, it returns <code>null</code>. It will update automatically in the event that the active account is changed.</p>
@@ -1289,19 +1289,19 @@ OasisExchangeService implementation uses the OasisDEX OTC market for this.</p>
 <p>This function is designed to be called by the <code>TransactionManager</code>, not accessed directly. As long as the target contract is defined by the <code>SmartContractService</code>, the inclusion of the <code>dsProxy</code> key in the options for any transaction will automatically forward the transaction to the <code>DSProxyService</code>.</p>
 
 <p>The value of <code>dsProxy</code> can either be <code>true</code> or an explicitly provided DSProxy address.</p>
-<h2 id='getproxyaddress'>getProxyAddress</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'proxy'</span><span class="p">).</span><span class="nx">getProxyAddress</span><span class="p">(</span><span class="s1">'0x...'</span><span class="p">);</span>
+<h2 id='getproxyaddress'>getProxyAddress</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'proxy'</span><span class="p">).</span><span class="nx">getProxyAddress</span><span class="p">(</span><span class="s1">'0x...'</span><span class="p">);</span>
 </code></pre>
 <ul>
 <li><strong>Params:</strong> Address (optional)</li>
-<li><strong>Returns:</strong> Contract address</li>
+<li><strong>Returns:</strong> promise (resolves to contract address)</li>
 </ul>
 
 <p><code>getProxyAddress</code> will query the proxy registry for the profile proxy address associated with a given account. If no address is provided as a parameter, the function will return the address of the proxy owned by the <code>currentAccount</code>.</p>
-<h2 id='getowner'>getOwner</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">owner</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'proxy'</span><span class="p">).</span><span class="nx">getOwner</span><span class="p">(</span><span class="s1">'0x...'</span><span class="p">);</span>
+<h2 id='getowner'>getOwner</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">owner</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'proxy'</span><span class="p">).</span><span class="nx">getOwner</span><span class="p">(</span><span class="s1">'0x...'</span><span class="p">);</span>
 </code></pre>
 <ul>
 <li><strong>Params:</strong> Address</li>
-<li><strong>Returns:</strong> Address</li>
+<li><strong>Returns:</strong> promise (resolves to address)</li>
 </ul>
 
 <p><code>getOwner</code> will query the proxy registry for the owner of a provided instance of DSProxy.</p>
