@@ -309,6 +309,47 @@
               </ul>
           </li>
           <li>
+            <a href="#tokens" class="toc-h1 toc-link" data-title="tokens">Tokens</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#allowance" class="toc-h2 toc-link" data-title="strong-allowance-strong"><strong>allowance</strong></a>
+                  </li>
+                  <li>
+                    <a href="#balance" class="toc-h2 toc-link" data-title="strong-balance-strong"><strong>balance</strong></a>
+                  </li>
+                  <li>
+                    <a href="#balanceof" class="toc-h2 toc-link" data-title="strong-balanceof-strong"><strong>balanceOf</strong></a>
+                  </li>
+                  <li>
+                    <a href="#totalsupply" class="toc-h2 toc-link" data-title="strong-totalsupply-strong"><strong>totalSupply</strong></a>
+                  </li>
+                  <li>
+                    <a href="#approve" class="toc-h2 toc-link" data-title="strong-approve-strong"><strong>approve</strong></a>
+                  </li>
+                  <li>
+                    <a href="#approveunlimited" class="toc-h2 toc-link" data-title="strong-approveunlimited-strong"><strong>approveUnlimited</strong></a>
+                  </li>
+                  <li>
+                    <a href="#transfer" class="toc-h2 toc-link" data-title="strong-transfer-strong"><strong>transfer</strong></a>
+                  </li>
+                  <li>
+                    <a href="#transferfrom" class="toc-h2 toc-link" data-title="strong-transferfrom-strong"><strong>transferFrom</strong></a>
+                  </li>
+                  <li>
+                    <a href="#deposit-weth-only" class="toc-h2 toc-link" data-title="strong-deposit-weth-only-strong"><strong>deposit (WETH only)</strong></a>
+                  </li>
+                  <li>
+                    <a href="#withdraw-weth-only" class="toc-h2 toc-link" data-title="strong-withdraw-weth-only-strong"><strong>withdraw (WETH only)</strong></a>
+                  </li>
+                  <li>
+                    <a href="#join-peth-only" class="toc-h2 toc-link" data-title="strong-join-peth-only-strong"><strong>join (PETH only)</strong></a>
+                  </li>
+                  <li>
+                    <a href="#exit-peth-only" class="toc-h2 toc-link" data-title="strong-exit-peth-only-strong"><strong>exit (PETH only)</strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#price-service" class="toc-h1 toc-link" data-title="price-service">Price Service</a>
               <ul class="toc-list-h2">
                   <li>
@@ -342,6 +383,29 @@
                   </li>
                   <li>
                     <a href="#getannualgovernancefee" class="toc-h2 toc-link" data-title="strong-getannualgovernancefee-strong"><strong>getAnnualGovernanceFee</strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#token-conversion" class="toc-h1 toc-link" data-title="token-conversion">Token Conversion</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#convertethtoweth" class="toc-h2 toc-link" data-title="strong-convertethtoweth-strong"><strong>convertEthToWeth</strong></a>
+                  </li>
+                  <li>
+                    <a href="#convertwethtopeth" class="toc-h2 toc-link" data-title="strong-convertwethtopeth-strong"><strong>convertWethToPeth</strong></a>
+                  </li>
+                  <li>
+                    <a href="#convertethtopeth" class="toc-h2 toc-link" data-title="strong-convertethtopeth-strong"><strong>convertEthToPeth</strong></a>
+                  </li>
+                  <li>
+                    <a href="#convertwethtoeth" class="toc-h2 toc-link" data-title="strong-convertwethtoeth-strong"><strong>convertWethToEth</strong></a>
+                  </li>
+                  <li>
+                    <a href="#convertpethtoweth" class="toc-h2 toc-link" data-title="strong-convertpethtoweth-strong"><strong>convertPethToWeth</strong></a>
+                  </li>
+                  <li>
+                    <a href="#convertpethtoeth" class="toc-h2 toc-link" data-title="strong-convertpethtoeth-strong"><strong>convertPethToEth</strong></a>
                   </li>
               </ul>
           </li>
@@ -438,6 +502,14 @@
                   </li>
                   <li>
                     <a href="#setowner" class="toc-h2 toc-link" data-title="setowner">setOwner</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#web3-service" class="toc-h1 toc-link" data-title="web3-service">Web3 Service</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#disconnect" class="toc-h2 toc-link" data-title="strong-disconnect-strong"><strong>disconnect</strong></a>
                   </li>
               </ul>
           </li>
@@ -853,7 +925,7 @@ the price of ETH in USD.</p>
 <li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
 </ul>
 
-<p><code>cdp.shut()</code> wipes all remaining dai, frees all remaining collateral, and deletes the CDP. This will fail if the caller does not have enough DAI and MKR to wipe all debt.</p>
+<p><code>cdp.shut()</code> wipes all remaining dai, frees all remaining collateral, and deletes the CDP. This will fail if the caller does not have enough DAI to wipe all the dai debt and enough MKR to pay for all the accrued stability fee</p>
 <h2 id='bite'><strong>bite</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">cdp</span><span class="p">.</span><span class="nx">bite</span><span class="p">();</span>
 </code></pre>
 <ul>
@@ -862,6 +934,133 @@ the price of ETH in USD.</p>
 </ul>
 
 <p><code>cdp.bite()</code> will initiate the liquidation process of an undercollateralized CDP</p>
+<h1 id='tokens'>Tokens</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tokenService</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'token'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">dai</span> <span class="o">=</span> <span class="nx">tokenService</span><span class="p">.</span><span class="nx">getToken</span><span class="p">(</span><span class="nx">DAI</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">weth</span> <span class="o">=</span> <span class="nx">tokenService</span><span class="p">.</span><span class="nx">getToken</span><span class="p">(</span><span class="nx">WETH</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">peth</span> <span class="o">=</span> <span class="nx">tokenService</span><span class="p">.</span><span class="nx">getToken</span><span class="p">(</span><span class="nx">PETH</span><span class="p">);</span>
+</code></pre>
+<p>Get a token object through the getToken(tokenSymbol) function on the tokenService</p>
+
+<p>Here&#39;s the list of tokens that can be passed into getToken(): DAI, MKR, WETH, PETH, ETH (this list can also be obtained with <code>tokenService.getTokens()</code>.  This function returns a string representation of the token symbol, e.g. &#39;DAI&#39;, which can also be passed into <code>getToken</code>).  </p>
+
+<p>The below methods can be called on any token object, except for <code>deposit</code> and <code>withdraw</code> are for Weth only, and <code>join</code> and <code>exit</code> are for Peth only.</p>
+<h2 id='allowance'><strong>allowance</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">allowance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">dai</span><span class="p">.</span><span class="nx">allowance</span><span class="p">(</span><span class="s1">'0x...owner'</span><span class="p">,</span> <span class="s1">'0x...spender'</span><span class="p">);</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong>
+
+<ul>
+<li><code>tokenOwner</code> - address of token owner</li>
+<li><code>spender</code> - address of token spender</li>
+</ul></li>
+<li><strong>Returns:</strong> promise (resolves to token allowance)</li>
+</ul>
+
+<p><code>allowance</code> returns a <a href="https://makerdao.com/documentation/#units">currency unit</a> representing the token allowance</p>
+<h2 id='balance'><strong>balance</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">balance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">dai</span><span class="p">.</span><span class="nx">balance</span><span class="p">();</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> none</li>
+<li><strong>Returns:</strong> promise (resolves balance of current account)</li>
+</ul>
+
+<p><code>balance</code> returns a <a href="https://makerdao.com/documentation/#units">currency unit</a> representing the token balance of the current account</p>
+<h2 id='balanceof'><strong>balanceOf</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">balanceOf</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">dai</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="s1">'0x...f00'</span><span class="p">);</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> address to check</li>
+<li><strong>Returns:</strong> promise (resolves balance of address)</li>
+</ul>
+
+<p><code>balanceOf</code> returns a <a href="https://makerdao.com/documentation/#units">currency unit</a> representing the token balance of the supplied account</p>
+<h2 id='totalsupply'><strong>totalSupply</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">totalSupply</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">dai</span><span class="p">.</span><span class="nx">totalSupply</span><span class="p">();</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> none</li>
+<li><strong>Returns:</strong> promise (resolves total supply of token)</li>
+</ul>
+
+<p><code>totalSupply</code> returns a <a href="https://makerdao.com/documentation/#units">currency unit</a> representing the total token supply</p>
+<h2 id='approve'><strong>approve</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">dai</span><span class="p">.</span><span class="nx">approve</span><span class="p">(</span><span class="s1">'0x...f00'</span><span class="p">,</span> <span class="nx">DAI</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> 
+
+<ul>
+<li><code>spender</code> - address of token spender</li>
+<li><code>amount</code> - amount of token to allow</li>
+</ul></li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>approve</code> approves the spending address to spend up to <code>amount</code> of <code>msg.sender</code>&#39;s tokens</p>
+<h2 id='approveunlimited'><strong>approveUnlimited</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">dai</span><span class="p">.</span><span class="nx">approveUnlimited</span><span class="p">(</span><span class="s1">'0x...f00'</span><span class="p">);</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> address of token spender</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>approveUnlimited</code> approves the spending address to spend the maximum amount of <code>msg.sender</code>&#39;s tokens</p>
+<h2 id='transfer'><strong>transfer</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">dai</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="s1">'0x...f00'</span><span class="p">,</span> <span class="nx">DAI</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> 
+
+<ul>
+<li><code>to</code> - address to send to</li>
+<li><code>amount</code> - amount of token to send</li>
+</ul></li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>transfer</code> transfers <code>amount</code> of token to <code>to</code> address</p>
+<h2 id='transferfrom'><strong>transferFrom</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">dai</span><span class="p">.</span><span class="nx">transferFrom</span><span class="p">(</span><span class="s1">'0x...fr0m'</span><span class="p">,</span> <span class="s1">'0x...t0'</span><span class="p">,</span> <span class="nx">DAI</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> 
+
+<ul>
+<li><code>from</code> - address to send tokens from</li>
+<li><code>to</code> - address to send to</li>
+<li><code>amount</code> - amount of token to send</li>
+</ul></li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>transferFrom()</code> transfers <code>amount</code> of token from <code>from</code> address to <code>to</code> address. Transaction will fail if <code>msg.sender</code> does not have allowance to transfer the amount of tokens from the <code>from</code> address.</p>
+<h2 id='deposit-weth-only'><strong>deposit (WETH only)</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">weth</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="nx">ETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Eth to deposit</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>deposit</code> converts <code>amount</code> of Eth to <code>amount</code> of Weth</p>
+<h2 id='withdraw-weth-only'><strong>withdraw (WETH only)</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">weth</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="nx">WETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Weth to withdraw</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>withdraw</code> converts <code>amount</code> of Weth to <code>amount</code> of Eth</p>
+<h2 id='join-peth-only'><strong>join (PETH only)</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">peth</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">WETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Weth to join</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>join</code> converts <code>amount</code> of Weth to Peth, at the <a href="#getwethtopethratio">Weth to Peth Ratio</a></p>
+<h2 id='exit-peth-only'><strong>exit (PETH only)</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">peth</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="nx">PETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Peth to exit</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>withdraw</code> converts <code>amount</code> of Peth to Weth, at the <a href="#getwethtopethratio">Weth to Peth Ratio</a></p>
 <h1 id='price-service'>Price Service</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">price</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'price'</span><span class="p">);</span>
 </code></pre>
 <p>Retrieve the PriceService through <code>Maker.service(&#39;price&#39;)</code>.</p>
@@ -874,7 +1073,7 @@ reported by the oracles in the Maker system.</p>
 <h2 id='getmkrprice'>getMkrPrice</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">mkrPrice</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">price</span><span class="p">.</span><span class="nx">getMkrPrice</span><span class="p">();</span>
 </code></pre>
 <p>Get the current USD price of the governance token MKR, as a <code>USD_MKR</code> <a href="#units">price unit</a>.</p>
-<h2 id='getpethprice'>getPethPrice</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">await</span> <span class="nx">pethPrice</span> <span class="o">=</span> <span class="nx">price</span><span class="p">.</span><span class="nx">getPethPrice</span><span class="p">();</span>
+<h2 id='getpethprice'>getPethPrice</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">pethPrice</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">price</span><span class="p">.</span><span class="nx">getPethPrice</span><span class="p">();</span>
 </code></pre>
 <p>Get the current USD price of PETH (pooled ethereum), as a <code>USD_PETH</code> <a href="#units">price unit</a>.</p>
 <h2 id='setethprice'>setEthPrice</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">await</span> <span class="nx">price</span><span class="p">.</span><span class="nx">setEthPrice</span><span class="p">(</span><span class="mi">475</span><span class="p">);</span>
@@ -921,6 +1120,71 @@ reported by the oracles in the Maker system.</p>
 <p><code>getAnnualGovernanceFee()</code> returns a decimal representation of the annual governance fee, e.g. 0.005.  </p>
 
 <p><em>Note: this is often referred to as the <code>Stability Fee</code>, even though technically the <code>Stability Fee</code> is the fee that is paid in Dai, and the <code>Governance Fee</code> is the fee that is paid in MKR.  But since fees are only paid in MKR in Single-Collateral Dai, and only paid in Dai in Multi-Collateral Dai, the fee in Single-Collateral Dai is often referred to as the <code>Stability Fee</code> to be consistent with the term that will be used in Multi-Collateral Dai and to avoid unduly confusing regular users.</em></p>
+<h1 id='token-conversion'>Token Conversion</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">conversionService</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'conversion'</span><span class="p">);</span>
+</code></pre>
+<p>Get the token conversion service with maker.service(&#39;conversion&#39;).</p>
+
+<p>The token conversion service offers functions to convert between Eth, Weth and Peth, handling allowances when necessary.</p>
+<h2 id='convertethtoweth'><strong>convertEthToWeth</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">conversionService</span><span class="p">.</span><span class="nx">convertEthToWeth</span><span class="p">(</span><span class="nx">ETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Eth to convert</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><em>Note: this is the same as <a href="#deposit-weth-only">weth.deposit</a></em></p>
+
+<p><code>convertEthToWeth</code> deposits ETH into the WETH contract</p>
+<h2 id='convertwethtopeth'><strong>convertWethToPeth</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">conversionService</span><span class="p">.</span><span class="nx">convertWethToPeth</span><span class="p">(</span><span class="nx">WETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Weth to convert</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>convertWethToPeth</code> joins WETH into PETH, first giving token allowance if necessary</p>
+
+<p><em>Note: this process is not atomic if a token allowance needs to be set, so it&#39;s possible for one of the transactions to succeed but not both.  See <a href="#proxy-service">Using DsProxy</a> for executing multiple transactions atomically.  Also, <a href="#join-peth-only">peth.join</a> can be called instead if you do not want the allowance to be set first automatically.</em></p>
+<h2 id='convertethtopeth'><strong>convertEthToPeth</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">conversionService</span><span class="p">.</span><span class="nx">convertEthToPeth</span><span class="p">(</span><span class="nx">ETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Eth to convert</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>convertEthToPeth</code> awaits <code>convertEthToWeth</code>, then calls <code>convertWethToPeth</code></p>
+
+<p><em>Note: this process is not atomic, so it&#39;s possible for some of the transactions to succeed but not all.  See <a href="#proxy-service">Using DsProxy</a> for executing multiple transactions atomically.</em></p>
+<h2 id='convertwethtoeth'><strong>convertWethToEth</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">conversionService</span><span class="p">.</span><span class="nx">convertconvertWethToEth</span><span class="p">(</span><span class="nx">WETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Weth to convert</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>convertWethToEth</code> withdraws Eth from Weth contract</p>
+
+<p><em>Note: this is the same as <a href="#withdraw-weth-only">weth.withdraw</a></em></p>
+<h2 id='convertpethtoweth'><strong>convertPethToWeth</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">conversionService</span><span class="p">.</span><span class="nx">convertPethToWeth</span><span class="p">(</span><span class="nx">PETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Peth to convert</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>convertPethToWeth</code> exits PETH into WETH, first giving token allowance if necessary</p>
+
+<p><em>Note: this process is not atomic if a token allowance needs to be set, so it&#39;s possible for one of the transactions to succeed but not both.  See <a href="#proxy-service">Using DsProxy</a> for executing multiple transactions atomically.  Also, <a href="#exit-peth-only">peth.exit</a> can be called instead if you do not want the allowance to be set first automatically.</em></p>
+<h2 id='convertpethtoeth'><strong>convertPethToEth</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">await</span> <span class="nx">conversionService</span><span class="p">.</span><span class="nx">convertPethToEth</span><span class="p">(</span><span class="nx">PETH</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre>
+<ul>
+<li><strong>Params:</strong> amount of Peth to convert</li>
+<li><strong>Returns:</strong> promise (resolves to <a href="#transactions"><code>transactionObject</code></a> once mined)</li>
+</ul>
+
+<p><code>convertPethToEth</code> awaits <code>convertPethToWeth</code>, then calls <code>convertWethToEth</code></p>
+
+<p><em>Note: this process is not atomic, so it&#39;s possible for some of the transactions to succeed but not all.  See <a href="#proxy-service">Using DsProxy</a> for executing multiple transactions atomically.</em></p>
 <h1 id='exchange-service'>Exchange Service</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">exchange</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'exchange'</span><span class="p">);</span>
 </code></pre>
 <p>Retrieve the OasisExchangeService (or alternative implementation) 
@@ -985,7 +1249,7 @@ OasisExchangeService implementation uses the OasisDEX OTC market for this.</p>
 <li><strong>Returns:</strong> promise (resolves to target price)</li>
 </ul>
 
-<p><code>getTargetPrice()</code> returns the target price of Dai in USD, that is, the value to which Dai is soft-pegged, e.g. 1.0</p>
+<p><code>getTargetPrice()</code> returns the target price of Dai in USD, that is, the value to which Dai is soft-pegged, which historically has been 1.  It returns a <code>USD_DAI</code> <a href="#units">price unit</a>.</p>
 <h1 id='events'>Events</h1>
 <p>The event pipeline allows developers to easily create real-time applications by letting them listen for important state changes and lifecycle events.</p>
 <h3 id='wildcards'>Wildcards</h3>
@@ -1315,6 +1579,12 @@ OasisExchangeService implementation uses the OasisDEX OTC market for this.</p>
 </ul>
 
 <p><code>setOwner</code> can be used to give a profile proxy to a new owner. The address of the recipient account must be specified, but the DSProxy address will default to <code>currentProxy</code> if the second parameter is excluded.</p>
+<h1 id='web3-service'>Web3 Service</h1><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">web3Service</span> <span class="o">=</span> <span class="nx">maker</span><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'web3'</span><span class="p">);</span>
+</code></pre>
+<p>The web3 service manages dai.js&#39; connection with the blockchain</p>
+<h2 id='disconnect'><strong>disconnect</strong></h2><pre class="highlight javascript tab-javascript"><code><span class="nx">web3Service</span><span class="p">.</span><span class="nx">disconnect</span><span class="p">();</span>
+</code></pre>
+<p><code>disconnect</code> closes the connection with the blockchain.</p>
 <h1 id='developing'>Developing</h1>
 <ol>
 <li><code>git clone https://github.com/makerdao/makerdao-integration-poc</code></li>
